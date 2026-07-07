@@ -5,141 +5,176 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Seu perfil bíblico — Papeleira Criativa</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Georgia', serif;
-    background: #faf8f5;
-    color: #2c2a27;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 2rem 1rem 4rem;
-  }
-  .logo {
-    font-size: 13px;
-    letter-spacing: 0.15em;
-    color: #9b8c7a;
-    text-transform: uppercase;
-    margin-bottom: 2.5rem;
-    text-align: center;
-  }
-  .card {
-    background: #fff;
-    border: 1px solid #e8e2d9;
-    border-radius: 16px;
-    max-width: 480px;
-    width: 100%;
-    padding: 2.5rem 2rem;
-    text-align: center;
-  }
-  .intro {
-    font-size: 13px;
-    color: #9b8c7a;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-  .nome-usuario {
-    font-size: 15px;
-    color: #6b5e50;
-    margin-bottom: 1.5rem;
-  }
-  .perfil-nome {
-    font-size: 32px;
-    font-weight: normal;
-    color: #2c2a27;
-    margin-bottom: 0.25rem;
-    letter-spacing: 0.02em;
-  }
-  .perfil-tag {
-    font-size: 13px;
-    color: #9b8c7a;
-    font-style: italic;
-    margin-bottom: 1.75rem;
-  }
-  .divider {
-    width: 40px;
-    height: 1px;
-    background: #d4c9ba;
-    margin: 0 auto 1.75rem;
-  }
-  .perfil-desc {
-    font-size: 15px;
-    line-height: 1.85;
-    color: #4a4540;
-    margin-bottom: 1.75rem;
-    text-align: left;
-  }
-  .versiculo {
-    background: #faf8f5;
-    border-left: 3px solid #c9b99e;
-    padding: 1rem 1.25rem;
-    margin-bottom: 1.75rem;
-    text-align: left;
-    border-radius: 0 8px 8px 0;
-  }
-  .versiculo p {
-    font-size: 14px;
-    font-style: italic;
-    color: #6b5e50;
-    line-height: 1.7;
-    margin-bottom: 0.25rem;
-  }
-  .versiculo span {
-    font-size: 12px;
-    color: #9b8c7a;
-    font-style: normal;
-  }
-  .cta-box {
-    background: #f5f0ea;
-    border-radius: 12px;
-    padding: 1.25rem;
-    margin-bottom: 0;
-  }
-  .cta-label {
-    font-size: 11px;
-    color: #9b8c7a;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5rem;
-  }
-  .cta-text {
-    font-size: 14px;
-    color: #4a4540;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-  .cta-btn {
-    display: inline-block;
-    background: #6b5e50;
-    color: #fff;
-    font-size: 13px;
-    padding: 0.75rem 1.75rem;
-    border-radius: 50px;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    font-family: 'Georgia', serif;
-  }
-  .rodape {
-    margin-top: 2rem;
-    font-size: 12px;
-    color: #b0a496;
-    text-align: center;
-  }
-  .loading {
-    text-align: center;
-    padding: 4rem 2rem;
-    color: #9b8c7a;
-    font-size: 15px;
-    font-style: italic;
-  }
-  .erro {
-    text-align: center;
-    padding: 3rem 2rem;
-    color: #9b8c7a;
-  }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --creme: #F5F0E8;
+  --creme-escuro: #ECE3D3;
+  --dourado: #C9A84C;
+  --marrom: #3B2A1A;
+  --marrom-suave: #6B5540;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background: var(--creme);
+  color: var(--marrom);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem 1rem 4rem;
+}
+
+.logo {
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  color: var(--dourado);
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.card {
+  background: #FFFDF9;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  border-radius: 16px;
+  max-width: 480px;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+
+.intro {
+  font-size: 13px;
+  color: var(--dourado);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.nome-usuario {
+  font-size: 15px;
+  color: var(--marrom-suave);
+  margin-bottom: 1.5rem;
+}
+
+.perfil-icone {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+  display: block;
+  object-fit: contain;
+}
+
+.perfil-nome {
+  font-size: 32px;
+  font-weight: normal;
+  color: var(--marrom);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.02em;
+}
+
+.perfil-tag {
+  font-size: 13px;
+  color: var(--dourado);
+  font-style: italic;
+  margin-bottom: 1.75rem;
+}
+
+.divider {
+  width: 40px;
+  height: 1px;
+  background: var(--dourado);
+  margin: 0 auto 1.75rem;
+}
+
+.perfil-desc {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--marrom);
+  margin-bottom: 1.75rem;
+  text-align: left;
+}
+
+.versiculo {
+  background: var(--creme-escuro);
+  border-left: 3px solid var(--dourado);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.75rem;
+  text-align: left;
+  border-radius: 0 8px 8px 0;
+}
+
+.versiculo p {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--marrom-suave);
+  line-height: 1.7;
+  margin-bottom: 0.25rem;
+}
+
+.versiculo span {
+  font-size: 12px;
+  color: var(--dourado);
+  font-style: normal;
+}
+
+.cta-box {
+  background: var(--creme-escuro);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 0;
+}
+
+.cta-label {
+  font-size: 11px;
+  color: var(--dourado);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.cta-text {
+  font-size: 14px;
+  color: var(--marrom);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: var(--marrom);
+  color: var(--creme);
+  font-size: 13px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 50px;
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  font-family: 'Georgia', serif;
+}
+
+.rodape {
+  margin-top: 2rem;
+  font-size: 12px;
+  color: var(--dourado);
+  text-align: center;
+}
+
+.loading {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--marrom-suave);
+  font-size: 15px;
+  font-style: italic;
+}
+
+.erro {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: var(--marrom-suave);
+}
 </style>
 </head>
 <body>
@@ -156,6 +191,7 @@
 const perfis = {
   "Rute": {
     tag: "O perfil da lealdade e da fidelidade",
+    icone: "icones/rute.png",
     desc: "Você é a mulher que fica — mesmo quando o caminho é difícil, mesmo quando ninguém obrigaria. Rute escolheu a lealdade acima do conforto, e essa escolha mudou sua história para sempre. Você tem essa constância rara: é fiel nos compromissos, presente nos relacionamentos e determinada no processo mesmo sem ver os resultados ainda. No seu negócio, sua consistência é seu maior ativo. Quem conhece o seu trabalho, confia. E quem confia, volta.",
     versiculo: "\"Onde tu morreres, morrerei eu, e ali serei sepultada.\"",
     ref: "Rute 1:17",
@@ -163,6 +199,7 @@ const perfis = {
   },
   "Marta": {
     tag: "O perfil da hospitalidade prática",
+    icone: "icones/marta.png",
     desc: "Você cuida, organiza e faz acontecer. Marta era a mulher que colocava a mão na massa — e havia amor em cada detalhe do que ela preparava. Você tem esse talento de transformar espaços e momentos em experiências que acolhem as pessoas. No seu negócio, você entrega com excelência, pensa nos detalhes que outros não veem e cria uma experiência de marca que as pessoas sentem. O seu diferencial é que você não apenas faz — você cuida.",
     versiculo: "\"Marta o recebeu em sua casa.\"",
     ref: "Lucas 10:38",
@@ -170,6 +207,7 @@ const perfis = {
   },
   "Rainha de Sabá": {
     tag: "O perfil da busca por conhecimento",
+    icone: "icones/rainha-de-saba.png",
     desc: "Você não se contenta com o superficial — quer ir fundo, entender, aprender e crescer. A Rainha de Sabá percorreu um longo caminho para buscar sabedoria e voltou transformada. Você tem essa sede genuína de conhecimento que te faz investir em si mesma, estudar, questionar e aplicar. No seu negócio, você se destaca pela profundidade: suas entregas têm substância, sua autoridade é construída com consistência e sua presença inspira quem está ao seu redor.",
     versiculo: "\"Quando a rainha de Sabá ouviu a fama de Salomão, veio para prová-lo com questões difíceis.\"",
     ref: "1 Reis 10:1",
@@ -177,6 +215,7 @@ const perfis = {
   },
   "Viúva do Azeite": {
     tag: "O perfil da fé no escasso",
+    icone: "icones/viuva-do-azeite.png",
     desc: "Você sabe o que é começar com pouco e ainda assim avançar. A viúva do azeite tinha apenas uma pequena vasilha — mas obedeceu, agiu e viu o milagre acontecer. Você tem essa fé corajosa que não espera ter tudo resolvido para dar o próximo passo. No seu negócio, você é criativa diante das limitações, fiel no processo e determinada a multiplicar o que Deus colocou em suas mãos — mesmo quando parece insuficiente.",
     versiculo: "\"Vai vender o azeite, paga a tua dívida e vive com teus filhos do restante.\"",
     ref: "2 Reis 4:7",
@@ -184,6 +223,7 @@ const perfis = {
   },
   "Viúva de Sarepta": {
     tag: "O perfil da generosidade extrema",
+    icone: "icones/viuva-de-sarepta.png",
     desc: "Você age com uma fé que vai além do que é razoável — e é exatamente aí que os milagres acontecem. A viúva de Sarepta partilhou o seu último punhado de farinha mesmo sem saber o que haveria amanhã, e essa obediência radical mudou sua história. Você carrega essa disposição de confiar mais em Deus do que nas circunstâncias. No seu negócio, sua entrega e autenticidade criam vínculos profundos com quem recebe o seu trabalho.",
     versiculo: "\"Não temas; vai, faze como disseste. Porém primeiro faze-me a mim um bolinho.\"",
     ref: "1 Reis 17:13",
@@ -191,6 +231,7 @@ const perfis = {
   },
   "Mulher Sunamita": {
     tag: "O perfil da fé que espera",
+    icone: "icones/sunamita.png",
     desc: "Você acredita mesmo quando não vê — e essa fé silenciosa e firme é uma das forças mais poderosas que existem. A mulher Sunamita construiu, serviu, perdeu e não desistiu: foi buscar o seu milagre com serenidade e certeza. Você tem essa paz profunda diante das esperas e das incertezas da vida. No seu negócio, você não age por desespero — age por convicção. E é exatamente essa calma que te faz tomar as melhores decisões nos momentos mais desafiadores.",
     versiculo: "\"Está tudo bem.\"",
     ref: "2 Reis 4:26",
@@ -198,6 +239,7 @@ const perfis = {
   },
   "Dorcas": {
     tag: "O perfil do serviço generoso",
+    icone: "icones/dorcas.png",
     desc: "Você tem o coração de Dorcas — uma mulher que transformava o que tinha em suas mãos em amor concreto pelas pessoas ao redor. Dorcas não esperava grandes recursos para agir: ela costurava, servia e cuidava com excelência e dedicação. No seu negócio, o seu maior diferencial é exatamente isso: a capacidade de tocar vidas de forma genuína através do que você cria e entrega. Você não vende apenas produtos — você oferece cuidado.",
     versiculo: "\"Era cheia de boas obras e de esmolas que distribuía.\"",
     ref: "Atos 9:36",
@@ -205,6 +247,7 @@ const perfis = {
   },
   "Lídia": {
     tag: "O perfil da empreendedora pioneira",
+    icone: "icones/lidia.png",
     desc: "Você é a mulher que abre portas — para si mesma e para quem vem depois. Lídia era comerciante, dona do próprio negócio, e a primeira convertida na Europa. Ela não esperava condições perfeitas: abriu sua casa, investiu no evangelho e construiu uma comunidade ao redor de tudo que acreditava. Você tem esse espírito pioneiro que combina fé com ação, negócio com propósito, e prosperidade com generosidade. Seu negócio é um ministério.",
     versiculo: "\"Era uma mulher chamada Lídia, vendedora de púrpura... cujo coração o Senhor abriu.\"",
     ref: "Atos 16:14",
@@ -212,6 +255,7 @@ const perfis = {
   },
   "Ester": {
     tag: "O perfil da coragem estratégica",
+    icone: "icones/ester.png",
     desc: "Você não age por impulso — você se prepara, ora, aguarda o momento certo e então age com determinação. Ester era estratégica: jejuou, se preparou e entrou diante do rei com serenidade e coragem. Você tem esse equilíbrio raro entre sensibilidade espiritual e pensamento estratégico. No seu negócio, você sabe que cada passo importa, que posicionamento é tudo e que a hora certa faz toda a diferença. Você foi criada para momentos como este.",
     versiculo: "\"Quem sabe se não foi para um momento como este que chegaste à posição que ocupas?\"",
     ref: "Ester 4:14",
@@ -219,6 +263,7 @@ const perfis = {
   },
   "Abigail": {
     tag: "O perfil da sabedoria em ação",
+    icone: "icones/abigail.png",
     desc: "Diante de uma crise, você não entra em pânico — você pensa, age e resolve. Abigail viu o perigo chegando, tomou uma decisão sábia sem hesitar e mudou o destino de toda uma família. Você tem esse dom de enxergar além do óbvio, mediar situações difíceis e agir com inteligência emocional. No seu negócio, você é a mulher que encontra a solução onde outros veem só o problema — e faz isso com elegância e firmeza.",
     versiculo: "\"Abigail era de boa inteligência e de formosa aparência.\"",
     ref: "1 Samuel 25:3",
@@ -226,6 +271,7 @@ const perfis = {
   },
   "Débora": {
     tag: "O perfil da liderança profética",
+    icone: "icones/debora.png",
     desc: "Você nasceu para liderar — e lidera com fé, firmeza e visão. Débora era juíza, profetisa e guerreira: não esperava permissão para ocupar o espaço que lhe foi dado por Deus. Você tem essa voz que mobiliza, essa clareza que orienta e essa coragem que inspira outras mulheres a avançarem. No seu negócio, você não apenas empreende — você abre caminhos. Sua presença é um marco. Seu propósito é maior do que você.",
     versiculo: "\"Levantei-me, Débora, levantei-me como mãe em Israel.\"",
     ref: "Juízes 5:7",
@@ -269,6 +315,7 @@ function calcularPerfil(respostas) {
     for (let i = 0; i < str.length; i++) { h = (h * 31 + str.charCodeAt(i)) >>> 0; }
     return h;
   }
+
   let seed = hashCode(respostas.join(''));
   const entries = Object.entries(pontos);
   for (let i = entries.length - 1; i > 0; i--) {
@@ -283,10 +330,12 @@ function calcularPerfil(respostas) {
 function renderPerfil(nome, perfilNome) {
   const p = perfis[perfilNome];
   if (!p) return;
+
   document.getElementById('conteudo').innerHTML = `
     <div class="card">
       <p class="intro">Seu perfil bíblico</p>
       ${nome ? `<p class="nome-usuario">${nome},</p>` : ''}
+      <img class="perfil-icone" src="${p.icone}" alt="" onerror="this.style.display='none'">
       <h1 class="perfil-nome">${perfilNome}</h1>
       <p class="perfil-tag">${p.tag}</p>
       <div class="divider"></div>
@@ -298,7 +347,7 @@ function renderPerfil(nome, perfilNome) {
       <div class="cta-box">
         <p class="cta-label">Seu planner</p>
         <p class="cta-text">${p.cta}</p>
-       <a href="https://pay.kiwify.com.br/ZDbndZz" class="cta-btn">Conheça o planner →</a>
+        <a href="https://pay.kiwify.com.br/ZDbndZz" class="cta-btn">Conheça o planner →</a>
       </div>
     </div>
   `;
@@ -307,7 +356,7 @@ function renderPerfil(nome, perfilNome) {
 function mostrarErro() {
   document.getElementById('conteudo').innerHTML = `
     <div class="erro">
-      <p style="font-size:15px;color:#9b8c7a;font-style:italic">Não foi possível carregar o resultado.<br>Por favor, tente novamente.</p>
+      <p style="font-size:15px;color:var(--marrom-suave);font-style:italic">Não foi possível carregar o resultado.<br>Por favor, tente novamente.</p>
     </div>`;
 }
 
