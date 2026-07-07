@@ -237,24 +237,23 @@ function calcularPerfil(respostas) {
   const pontos = {};
   Object.keys(perfis).forEach(p => pontos[p] = 0);
 
-  // Mapeamento reequilibrado em 06/07/2026 (correção de distorção: Rute 34% / Abigail 0% / Priscila removida)
-  // ATENÇÃO Ester: os pares opção→perfil abaixo foram reorganizados para equilibrar a distribuição.
-  // Revisar se ainda fazem sentido temático com o texto real das perguntas no Google Forms.
+  // Mapeamento v2 — 07/07/2026 — revisado tematicamente pela Ester e reequilibrado pela Lídia
+  // Alinhado ao texto real das perguntas do Google Forms; todos os 11 perfis entre ~6% e ~11% de chance
   const mapa = [
-    // P1
-    { A: ["Rute","Marta"], B: ["Rainha de Sabá","Viúva do Azeite"], C: ["Viúva de Sarepta","Mulher Sunamita"], D: ["Dorcas"] },
-    // P2
-    { A: ["Lídia"], B: ["Ester","Abigail"], C: ["Rute"], D: ["Marta","Rainha de Sabá"] },
-    // P3
-    { A: ["Viúva do Azeite","Rute"], B: ["Viúva de Sarepta","Mulher Sunamita"], C: ["Dorcas","Lídia"], D: ["Ester"] },
-    // P4
-    { A: ["Abigail"], B: ["Débora"], C: ["Marta"], D: ["Rainha de Sabá","Viúva do Azeite"] },
-    // P5
-    { A: ["Viúva de Sarepta"], B: ["Mulher Sunamita","Dorcas"], C: ["Lídia","Ester"], D: ["Abigail","Débora"] },
-    // P6
-    { A: ["Rute"], B: ["Rainha de Sabá","Débora"], C: ["Viúva do Azeite"], D: ["Viúva de Sarepta"] },
-    // P7
-    { A: ["Mulher Sunamita","Dorcas"], B: ["Lídia"], C: ["Ester","Abigail"], D: ["Débora"] }
+    // P1 — Como você age quando alguém está passando por dificuldades?
+    { A: ["Dorcas","Marta"], B: ["Ester"], C: ["Débora","Lídia"], D: ["Rute","Mulher Sunamita"] },
+    // P2 — No seu negócio, o que mais te move?
+    { A: ["Dorcas"], B: ["Rainha de Sabá"], C: ["Débora","Rainha de Sabá"], D: ["Lídia"] },
+    // P3 — Quando os recursos são escassos, qual é sua postura?
+    { A: ["Viúva do Azeite","Viúva de Sarepta"], B: ["Lídia","Abigail"], C: ["Ester"], D: ["Viúva do Azeite","Viúva de Sarepta"] },
+    // P4 — Como as pessoas costumam te descrever?
+    { A: ["Mulher Sunamita"], B: ["Abigail"], C: ["Rute"], D: ["Marta"] },
+    // P5 — Qual frase ressoa com seu momento agora?
+    { A: ["Viúva de Sarepta"], B: ["Ester"], C: ["Débora","Rainha de Sabá"], D: ["Viúva do Azeite","Rute"] },
+    // P6 — O que você mais valoriza numa comunidade de mulheres?
+    { A: ["Viúva de Sarepta","Dorcas"], B: ["Rainha de Sabá"], C: ["Débora","Lídia"], D: ["Rute"] },
+    // P7 — Qual seu maior desafio como empreendedora cristã?
+    { A: ["Mulher Sunamita","Dorcas"], B: ["Abigail"], C: ["Marta"], D: ["Viúva do Azeite","Mulher Sunamita"] }
   ];
 
   respostas.forEach((resp, i) => {
