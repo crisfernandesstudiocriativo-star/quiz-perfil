@@ -203,13 +203,6 @@ const perfis = {
     ref: "Atos 9:36",
     cta: "O Planner Dorcas foi criado para organizar sua generosidade com propósito — equilibrando o cuidar dos outros com o cuidado de si mesma e do seu negócio."
   },
-  "Priscila": {
-    tag: "O perfil do ensino e da parceria",
-    desc: "Você é daquelas mulheres que crescem e fazem crescer ao mesmo tempo. Priscila ensinava, discipulava e trabalhava lado a lado com seu marido — sempre a serviço do evangelho e das pessoas. Você tem esse dom de comunicar com clareza, de multiplicar o que sabe e de construir relações de parceria genuína. No seu negócio, você não apenas entrega um produto: você forma, ensina e impacta. Quem passa por você sai diferente.",
-    versiculo: "\"Priscila e Áquila... o tomaram consigo e lhe expuseram mais exatamente o caminho de Deus.\"",
-    ref: "Atos 18:26",
-    cta: "O Planner Priscila foi feito para quem ensina, cria e lidera com relacionamento — com estrutura para conteúdo, mentorias e o negócio que transforma vidas."
-  },
   "Lídia": {
     tag: "O perfil da empreendedora pioneira",
     desc: "Você é a mulher que abre portas — para si mesma e para quem vem depois. Lídia era comerciante, dona do próprio negócio, e a primeira convertida na Europa. Ela não esperava condições perfeitas: abriu sua casa, investiu no evangelho e construiu uma comunidade ao redor de tudo que acreditava. Você tem esse espírito pioneiro que combina fé com ação, negócio com propósito, e prosperidade com generosidade. Seu negócio é um ministério.",
@@ -244,22 +237,24 @@ function calcularPerfil(respostas) {
   const pontos = {};
   Object.keys(perfis).forEach(p => pontos[p] = 0);
 
-  // Mapeamento: pergunta → opção → perfil(s) que pontua
+  // Mapeamento reequilibrado em 06/07/2026 (correção de distorção: Rute 34% / Abigail 0% / Priscila removida)
+  // ATENÇÃO Ester: os pares opção→perfil abaixo foram reorganizados para equilibrar a distribuição.
+  // Revisar se ainda fazem sentido temático com o texto real das perguntas no Google Forms.
   const mapa = [
-    // P1: Como você age quando alguém ao redor está passando por dificuldades?
-    { A: ["Dorcas","Viúva de Sarepta"], B: ["Ester","Abigail"], C: ["Débora","Lídia"], D: ["Rute","Mulher Sunamita"] },
-    // P2: No seu negócio, o que mais te move?
-    { A: ["Dorcas","Marta"], B: ["Priscila","Rainha de Sabá"], C: ["Débora","Lídia"], D: ["Rute","Viúva do Azeite"] },
-    // P3: Quando os recursos são escassos, qual é a sua postura?
-    { A: ["Viúva do Azeite","Viúva de Sarepta"], B: ["Lídia","Priscila"], C: ["Ester","Abigail"], D: ["Mulher Sunamita","Rute"] },
-    // P4: Como as pessoas ao redor te descrevem?
-    { A: ["Dorcas","Marta"], B: ["Ester","Débora"], C: ["Rute","Lídia"], D: ["Marta","Mulher Sunamita"] },
-    // P5: Qual versículo ressoa mais com seu momento de vida?
-    { A: ["Dorcas","Viúva do Azeite"], B: ["Ester","Débora"], C: ["Débora","Lídia"], D: ["Mulher Sunamita","Rute"] },
-    // P6: O que você mais valoriza em uma comunidade de mulheres?
-    { A: ["Viúva de Sarepta","Dorcas"], B: ["Priscila","Rainha de Sabá"], C: ["Débora","Ester"], D: ["Rute","Marta"] },
-    // P7: Qual é o seu maior desafio como empreendedora cristã?
-    { A: ["Viúva do Azeite","Lídia"], B: ["Ester","Abigail"], C: ["Débora","Rainha de Sabá"], D: ["Mulher Sunamita","Rute"] }
+    // P1
+    { A: ["Rute","Marta"], B: ["Rainha de Sabá","Viúva do Azeite"], C: ["Viúva de Sarepta","Mulher Sunamita"], D: ["Dorcas"] },
+    // P2
+    { A: ["Lídia"], B: ["Ester","Abigail"], C: ["Rute"], D: ["Marta","Rainha de Sabá"] },
+    // P3
+    { A: ["Viúva do Azeite","Rute"], B: ["Viúva de Sarepta","Mulher Sunamita"], C: ["Dorcas","Lídia"], D: ["Ester"] },
+    // P4
+    { A: ["Abigail"], B: ["Débora"], C: ["Marta"], D: ["Rainha de Sabá","Viúva do Azeite"] },
+    // P5
+    { A: ["Viúva de Sarepta"], B: ["Mulher Sunamita","Dorcas"], C: ["Lídia","Ester"], D: ["Abigail","Débora"] },
+    // P6
+    { A: ["Rute"], B: ["Rainha de Sabá","Débora"], C: ["Viúva do Azeite"], D: ["Viúva de Sarepta"] },
+    // P7
+    { A: ["Mulher Sunamita","Dorcas"], B: ["Lídia"], C: ["Ester","Abigail"], D: ["Débora"] }
   ];
 
   respostas.forEach((resp, i) => {
@@ -268,7 +263,22 @@ function calcularPerfil(respostas) {
     }
   });
 
-  return Object.entries(pontos).sort((a,b) => b[1]-a[1])[0][0];
+  // Desempate determinístico e não-tendencioso: mesma resposta sempre dá o mesmo resultado,
+  // mas nenhum perfil é sistematicamente favorecido em empates (antes "Rute" sempre vencia).
+  function hashCode(str) {
+    let h = 0;
+    for (let i = 0; i < str.length; i++) { h = (h * 31 + str.charCodeAt(i)) >>> 0; }
+    return h;
+  }
+  let seed = hashCode(respostas.join(''));
+  const entries = Object.entries(pontos);
+  for (let i = entries.length - 1; i > 0; i--) {
+    seed = (seed * 1103515245 + 12345) >>> 0;
+    const j = seed % (i + 1);
+    [entries[i], entries[j]] = [entries[j], entries[i]];
+  }
+  entries.sort((a, b) => b[1] - a[1]);
+  return entries[0][0];
 }
 
 function renderPerfil(nome, perfilNome) {
