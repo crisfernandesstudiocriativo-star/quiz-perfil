@@ -347,7 +347,7 @@ function renderPerfil(nome, perfilNome) {
       <div class="cta-box">
         <p class="cta-label">Seu planner</p>
         <p class="cta-text">${p.cta}</p>
-        <a href="https://pay.kiwify.com.br/ZDbndZz" class="cta-btn">Conheça o planner →</a>
+        <a href="${linkCheckout()}" class="cta-btn">Conheça o planner →</a>
       </div>
     </div>
   `;
@@ -360,10 +360,21 @@ function mostrarErro() {
     </div>`;
 }
 
-// Lê parâmetros da URL: ?nome=Maria&r1=A&r2=B&r3=C&r4=D&r5=A&r6=B&r7=C
+// Lê parâmetros da URL: ?nome=Maria&r1=A&r2=B&r3=C&r4=D&r5=A&r6=B&r7=C&utm_source=instagram&utm_medium=stories&utm_campaign=quiz
 const params = new URLSearchParams(window.location.search);
 const nome = params.get('nome') || '';
 const respostas = ['r1','r2','r3','r4','r5','r6','r7'].map(k => params.get(k));
+
+// Repassa UTM/origem de quem entrou no quiz para o link de checkout da Kiwify,
+// assim a venda fica rastreada de ponta a ponta (Stories/Post/Pin -> Quiz -> Compra)
+function linkCheckout() {
+  const base = "https://pay.kiwify.com.br/ZDbndZz";
+  const camposRastreio = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','src'];
+  const presentes = camposRastreio.filter(c => params.get(c));
+  if (presentes.length === 0) return base;
+  const query = presentes.map(c => `${c}=${encodeURIComponent(params.get(c))}`).join('&');
+  return `${base}?${query}`;
+}
 
 if (respostas.some(r => r)) {
   const perfil = calcularPerfil(respostas);
